@@ -155,9 +155,9 @@
 
 class Adafruit_PN532{
  public:
-  Adafruit_PN532(uint8_t clk, uint8_t miso, uint8_t mosi, uint8_t ss);  // Software SPI
-  Adafruit_PN532(uint8_t irq, uint8_t reset);  // Hardware I2C
-  Adafruit_PN532(uint8_t ss);  // Hardware SPI
+  Adafruit_PN532(int clk, int miso, int mosi, int ss);  // Software SPI
+  Adafruit_PN532(int dev, int irq, int reset);  // Hardware I2C
+  Adafruit_PN532(int ss);  // Hardware SPI
   void begin(void);
   
   // Generic PN532 functions
@@ -196,8 +196,8 @@ class Adafruit_PN532{
   static void PrintHexChar(const byte * pbtData, const uint32_t numBytes);
 
  private:
-  uint8_t _ss, _clk, _mosi, _miso;
-  uint8_t _irq, _reset;
+  int _ss, _clk, _mosi, _miso;
+  int _irq, _reset, _i2cdev;
   uint8_t _uid[7];       // ISO14443A uid
   uint8_t _uidLen;       // uid len
   uint8_t _key[6];       // Mifare Classic key
